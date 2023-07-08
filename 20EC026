@@ -1,0 +1,54 @@
+create database BooksDB;
+use BooksDB;
+
+create table Books(
+s_no int primary key,
+book_title varchar(50),
+author_name varchar(50),
+genre varchar(50),
+publication int,
+price int);
+
+create table authors(se_no int primary key,
+		    author_age int,
+                    author_native varchar(50),
+                    author_name varchar(60),
+                    s_no int,
+		    constraint fk_s_no foreign key(s_no) references Books(s_no));
+
+
+insert into Books values(1,"Cindrella","Walter Elias Disney","Cartoon",1997,5000);
+insert into Books values(2,"Zombie","Hitler","Horror",1987,500);
+insert into Books values(3,"Life of Pie","Mary Comb","Life lesson",2007,2000);
+insert into Books values(4,"Life of Lord","Prince Jack","Fiction",1907,4000);
+insert into Books values(5,"World tour","William","action",2002,5500);
+insert into Books values(6,"Poppins","Wright Brothers","Cartoon",2010,3000);
+
+insert into authors values   (1,20,"Dubai","William",5);
+insert into authors values(2,25,"Bombay","Zombie",2);
+insert into authors values(3,30,"Sidney","Walter Elias Disney",1);
+insert into authors values(4,40,"Darjiling","Wright Brothers",6); 
+
+select*from books;
+
+SELECT * FROM books
+WHERE book_title LIKE 'L%';
+
+UPDATE Books
+SET price = "4500";
+select*from Books;
+
+DELETE from Books
+WHERE s_no= 4;
+select*from Books;
+
+
+SELECT * FROM Books;
+SELECT * FROM authors;
+
+SELECT s_no,book_title,author_name,genre,publication,price
+FROM Books
+INNER JOIN authors
+ON Books.author_name=authors.author_name
+ORDER BY s_no;        
+
